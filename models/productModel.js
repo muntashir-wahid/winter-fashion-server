@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema({
   },
   picture: {
     type: String,
-    required: [true, "A recipe must have a name"],
+    required: [true, "A recipe must have a picture"],
     validate: {
       validator: function (url) {
         return /(http(s?):)([\/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/g.test(url);

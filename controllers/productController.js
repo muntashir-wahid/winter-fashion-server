@@ -11,7 +11,7 @@ exports.getAllProducts = async (req, res) => {
       },
     });
   } catch (err) {
-    rea.status(500).status({
+    res.status(500).json({
       status: "fail",
       message: "Something went very wrong",
     });
@@ -29,9 +29,27 @@ exports.getProduct = async (req, res) => {
       },
     });
   } catch (err) {
-    rea.status(500).status({
+    res.status(500).status({
       status: "fail",
       message: "Something went very wrong",
+    });
+  }
+};
+
+exports.createProduct = async (req, res) => {
+  try {
+    const product = await Product.create(req.body);
+
+    res.statu(201).json({
+      status: "success",
+      data: {
+        product,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "error",
+      message: "Something went wrong",
     });
   }
 };
