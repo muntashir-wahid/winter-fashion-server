@@ -72,3 +72,24 @@ exports.getUser = async (req, res) => {
     });
   }
 };
+
+exports.getAllUser = async (req, res) => {
+  try {
+    const users = await User.find({ role: "user" }).select(
+      "-__v -password -role"
+    );
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        users,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: "fail",
+      message: "Something went very wrong",
+    });
+  }
+};

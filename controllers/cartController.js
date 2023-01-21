@@ -44,3 +44,22 @@ exports.getUserCart = async (req, res) => {
     });
   }
 };
+
+exports.deleteFromCart = async (req, res) => {
+  try {
+    const item = await Cart.findByIdAndDelete(req.params.id).select("-__v");
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        item,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: "error",
+      message: "Something went wrong",
+    });
+  }
+};

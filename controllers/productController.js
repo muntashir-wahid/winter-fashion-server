@@ -40,13 +40,14 @@ exports.createProduct = async (req, res) => {
   try {
     const product = await Product.create(req.body);
 
-    res.statu(201).json({
+    res.status(201).json({
       status: "success",
       data: {
         product,
       },
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       status: "error",
       message: "Something went wrong",
